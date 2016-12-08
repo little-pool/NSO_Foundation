@@ -1,0 +1,85 @@
+module foundation {
+  namespace "http://com/example/foundation";
+  prefix foundation;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  //link节点信息用于link_service
+  grouping node{
+    //在添加netblock时要将两个node中device的name取出，根据name的最后数字来确定网络好的第三个segment。
+    leaf device{
+      type leafref{
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+    container interface{
+      leaf int_type{
+        type enumeration{
+          enum FastEthernet;
+          enum GigabitEthernet;
+          enum TenGigE;
+        }
+      }
+      leaf int_id{
+        type string;
+        /*type leafref{
+          path "/ncs:devices/ncs:device[name = current()/../../device]/ncs:config/ncs:interface/ncs:'current()/../int_type/'/ncs:id";
+        }*/
+      }
+    }
+  }
+
+  augment /ncs:services {
+
+    container link_service{
+
+      list link_part{
+
+        uses ncs:service-data;
+        ncs:servicepoint "foundation-servicepoint";
+
+        key part_name;
+        leaf part_name{
+          type string;
+        }
+        //需要输入该part中将会有多少个link，用于计算网络地址和掩码。
+        leaf link_num{
+          type uint32;
+        }
+        container netblock{
+          //所有link所公用的一个网段
+          leaf netaddress{
+            type inet:ipv4-address;
+            default "10.1.0.0";
+          }
+          //每段链路的掩码
+          leaf netmask{
+            type string;
+            default "30";
+          }
+        }
+        list link{
+          key "link_id";
+          leaf link_id{
+            type uint16;
+          }
+          container s_node{
+            uses node;
+          }
+          container d_node{
+            uses node;
+          }
+
+        }
+      }
+    }
+  }
+}

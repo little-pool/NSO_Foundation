@@ -1,0 +1,44 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+    <devices xmlns="http://tail-f.com/ns/ncs">
+        <device>
+            <name>{$DEVICE_NAME}</name>
+            <config>
+                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='GigabitEthernet'}">
+                    <GigabitEthernet>
+                        <id>{$INTER_ID}</id>
+                        <ipv4>
+                            <address>
+                                <ip>{$IPV4_ADDRESS}</ip>
+                                <mask>/{$NETMASK}</mask>
+                            </address>
+                        </ipv4>
+                    </GigabitEthernet>
+                </interface>
+
+                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='FastEthernet'}">
+                    <FastEthernet>
+                        <id>{$INTER_ID}</id>
+                        <ipv4>
+                            <address>
+                                <ip>{$IPV4_ADDRESS}</ip>
+                                <mask>/{$NETMASK}</mask>
+                            </address>
+                        </ipv4>
+                    </FastEthernet>
+                </interface>
+
+                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='TenGigE'}">
+                    <TenGigE>
+                        <id>{$INTER_ID}</id>
+                        <ipv4>
+                            <address>
+                                <ip>{$IPV4_ADDRESS}</ip>
+                                <mask>/{$NETMASK}</mask>
+                            </address>
+                        </ipv4>
+                    </TenGigE>
+                </interface>
+            </config>
+        </device>
+    </devices>
+</config-template>
