@@ -3,40 +3,69 @@
         <device>
             <name>{$DEVICE_NAME}</name>
             <config>
+                <!--IOSXR-->
                 <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='GigabitEthernet'}">
                     <GigabitEthernet>
                         <id>{$INTER_ID}</id>
                         <ipv4>
                             <address>
                                 <ip>{$IPV4_ADDRESS}</ip>
-                                <mask>/{$NETMASK}</mask>
+                                <mask>{$NETMASK}</mask>
                             </address>
                         </ipv4>
                     </GigabitEthernet>
                 </interface>
-
-                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='FastEthernet'}">
-                    <FastEthernet>
-                        <id>{$INTER_ID}</id>
-                        <ipv4>
-                            <address>
-                                <ip>{$IPV4_ADDRESS}</ip>
-                                <mask>/{$NETMASK}</mask>
-                            </address>
-                        </ipv4>
-                    </FastEthernet>
-                </interface>
-
                 <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='TenGigE'}">
                     <TenGigE>
                         <id>{$INTER_ID}</id>
                         <ipv4>
                             <address>
                                 <ip>{$IPV4_ADDRESS}</ip>
-                                <mask>/{$NETMASK}</mask>
+                                <mask>{$NETMASK}</mask>
                             </address>
                         </ipv4>
                     </TenGigE>
+                </interface>
+
+                <!--IOS-->
+                <interface xmlns="urn:ios" when="{$INT_TYPE='FastEthernet'}">
+                    <FastEthernet>
+                        <name>{$INTER_ID}</name>
+                        <ip>
+                            <address>
+                                <primary>
+                                    <address>{$IPV4_ADDRESS}</address>
+                                    <mask>{$NETMASK}</mask>
+                                </primary>
+                            </address>
+                        </ip>
+                    </FastEthernet>
+                </interface>
+                <interface xmlns="urn:ios" when="{$INT_TYPE='GigabitEthernet'}">
+                    <GigabitEthernet>
+                        <name>{$INTER_ID}</name>
+                        <ip>
+                            <address>
+                                <primary>
+                                    <address>{$IPV4_ADDRESS}</address>
+                                    <mask>{$NETMASK}</mask>
+                                </primary>
+                            </address>
+                        </ip>
+                    </GigabitEthernet>
+                </interface>
+                <interface xmlns="urn:ios" when="{$INT_TYPE='TenGigE'}">
+                    <TenGigabitEthernet>
+                        <name>{$INTER_ID}</name>
+                        <ip>
+                            <address>
+                                <primary>
+                                    <address>{$IPV4_ADDRESS}</address>
+                                    <mask>{$NETMASK}</mask>
+                                </primary>
+                            </address>
+                        </ip>
+                    </TenGigabitEthernet>
                 </interface>
             </config>
         </device>

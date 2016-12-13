@@ -15,7 +15,7 @@ import com.tailf.dp.services.*;
 import com.tailf.ncs.template.Template;
 import com.tailf.ncs.template.TemplateVariables;
 
-import sun.tools.jar.resources.jar;
+
 
 import com.example.foundation.link.*;
 import com.example.foundation.tools.*;
@@ -55,10 +55,10 @@ public class foundationRFS {
                              NavuNode ncsRoot,
                              Properties opaque)
                              throws ConfException {
-    	System.out.print("running...\n");
     	
         NavuContainer link_service = service.container("link_service");
         NavuList link_part = link_service.list("link_part");
+        System.out.print("over");
         for(NavuContainer part_info : link_part){
         	System.out.println(part_info.leaf("part_name").valueAsString()+"   ");
         	int i = 0;
@@ -124,7 +124,7 @@ public class foundationRFS {
         	for(int j = 0 ; j < links.size() ; j ++){
         		
         		Template myTemplate = new Template(context, "interfaces");
-        		String link_netmask = String.valueOf(links.get(j).getNetmask());
+        		String link_netmask = links.get(j).getNetmask();
         		
         		//source device deploy
                 TemplateVariables source_Vars = new TemplateVariables();      		

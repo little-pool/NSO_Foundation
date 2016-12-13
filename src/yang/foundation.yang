@@ -38,48 +38,95 @@ module foundation {
   }
 
   augment /ncs:services {
+    list foundation
+    {
+      uses ncs:service-data;
+      ncs:servicepoint "foundation-servicepoint";
 
-    container link_service{
+      key foun_name;
+      leaf foun_name{
+        type string;
+      }
 
-      list link_part{
-
-        uses ncs:service-data;
-        ncs:servicepoint "foundation-servicepoint";
-
-        key part_name;
-        leaf part_name{
-          type string;
-        }
-        //需要输入该part中将会有多少个link，用于计算网络地址和掩码。
-        leaf link_num{
-          type uint32;
-        }
-        container netblock{
-          //所有link所公用的一个网段
-          leaf netaddress{
-            type inet:ipv4-address;
-            default "10.1.0.0";
-          }
-          //每段链路的掩码
-          leaf netmask{
+      container link_service{
+        list link_part{
+          key part_name;
+          leaf part_name{
             type string;
-            default "30";
           }
-        }
-        list link{
-          key "link_id";
-          leaf link_id{
-            type uint16;
+          //需要输入该part中将会有多少个link，用于计算网络地址和掩码。
+          leaf link_num{
+            type uint32;
           }
-          container s_node{
-            uses node;
+          container netblock{
+            //所有link所公用的一个网段
+            leaf netaddress{
+              type inet:ipv4-address;
+              default "10.1.0.0";
+            }
+            //每段链路的掩码
+            leaf netmask{
+              type string;
+              default "30";
+            }
           }
-          container d_node{
-            uses node;
-          }
+          list link{
+            key "link_id";
+            leaf link_id{
+              type uint16;
+            }
+            container s_node{
+              uses node;
+            }
+            container d_node{
+              uses node;
+            }
 
+          }
         }
       }
+
+      container IGP_service{
+        container OSPF{
+          list process{
+            key "process_id";
+            leaf process_id{type string;}
+            container route_import{
+              leaf route_type{type string;}
+              leaf process_id{type uint32;}
+              leaf metric_type{type string;}
+              leaf metric_value{type uint32;}
+            }
+            container areas{
+              list area{
+                key "area_id";
+                leaf area_id{type uint32;}
+                leaf area_type{type string;}
+                container devices{
+                  list device{
+                    key "device_id";
+                    leaf device_id{type string;}
+                    leaf router_id{type string;}
+                    container interfaces{
+                      list interface{
+                        key "int_type int_id";
+                        leaf int_type{type string;}
+                        leaf int_id{type string;}
+                        leaf network_type{type string;}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        container ISIS{}
+
+      }
+
+
     }
   }
 }

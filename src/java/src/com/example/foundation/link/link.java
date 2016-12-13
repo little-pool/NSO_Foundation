@@ -2,7 +2,6 @@ package com.example.foundation.link;
 
 import javax.management.loading.PrivateClassLoader;
 
-import com.google.common.base.Predicate;
 
 public class link {
 	public link(int linkID, String s_device, String s_interface_type, String s_interface_id,String d_device, String d_interface_type, String d_interface_id) {
@@ -14,7 +13,7 @@ public class link {
 		this.d_interface_id = d_interface_id;
 		this.d_interface_type = d_interface_type;
 	}
-	
+
 	private int linkID;
 	private String s_device;
 	private String s_interface_type;
@@ -25,17 +24,17 @@ public class link {
 	private String d_interface_id;
 	private String d_IP;
 	private long net_block;
-	private int netmask = 30;
-	
-	
-	public int getNetmask() {
+	private String netmask = "255.255.255.252";
+
+
+	public String getNetmask() {
 		return netmask;
 	}
-	public void setNetmask(int netmask) {
+	public void setNetmask(String netmask) {
 		this.netmask = netmask;
 	}
-	
-	
+
+
 	public long getNet_block() {
 		return net_block;
 	}
@@ -96,8 +95,8 @@ public class link {
 	public void setD_IP(String d_IP) {
 		this.d_IP = d_IP;
 	}
-	
-	
-	
-	
+
+
+
+
 }
