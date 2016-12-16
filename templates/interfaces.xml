@@ -10,7 +10,7 @@
                         <ipv4>
                             <address>
                                 <ip>{$IPV4_ADDRESS}</ip>
-                                <mask>{$NETMASK}</mask>
+                                <mask>/{$NETMASK}</mask>
                             </address>
                         </ipv4>
                     </GigabitEthernet>
@@ -21,7 +21,7 @@
                         <ipv4>
                             <address>
                                 <ip>{$IPV4_ADDRESS}</ip>
-                                <mask>{$NETMASK}</mask>
+                                <mask>/{$NETMASK}</mask>
                             </address>
                         </ipv4>
                     </TenGigE>

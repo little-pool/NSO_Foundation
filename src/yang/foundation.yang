@@ -40,8 +40,6 @@ module foundation {
   augment /ncs:services {
     list foundation
     {
-      uses ncs:service-data;
-      ncs:servicepoint "foundation-servicepoint";
 
       key foun_name;
       leaf foun_name{
@@ -50,6 +48,10 @@ module foundation {
 
       container link_service{
         list link_part{
+
+          uses ncs:service-data;
+          ncs:servicepoint "link_service-servicepoint";
+
           key part_name;
           leaf part_name{
             type string;
@@ -122,7 +124,6 @@ module foundation {
           }
         }
 
-        container ISIS{}
 
       }
 

@@ -41,6 +41,8 @@ public class foundation extends ConfNamespace {
         return ConfNamespace.hashToString(hash);
     }
 
+    public static final int    _router_id = 433823853;
+    public static final String _router_id_ = "router_id";
     public static final int    _int_type = 752323622;
     public static final String _int_type_ = "int_type";
     public static final int    _discard_non_service_config = 441364055;
@@ -65,6 +67,8 @@ public class foundation extends ConfNamespace {
     public static final String _hours_ = "hours";
     public static final int    _name = 1998270519;
     public static final String _name_ = "name";
+    public static final int    _area_id = 1680095792;
+    public static final String _area_id_ = "area_id";
     public static final int    _get_modifications = 1195376060;
     public static final String _get_modifications_ = "get-modifications";
     public static final int    _level = 2112619197;
@@ -77,12 +81,16 @@ public class foundation extends ConfNamespace {
     public static final String _time_out_choice_ = "time-out-choice";
     public static final int    _no_overwrite = 2064525500;
     public static final String _no_overwrite_ = "no-overwrite";
+    public static final int    _process_id = 1600601140;
+    public static final String _process_id_ = "process_id";
     public static final int    _deep = 28591482;
     public static final String _deep_ = "deep";
     public static final int    _ignore_refcount = 911461978;
     public static final String _ignore_refcount_ = "ignore-refcount";
     public static final int    _link_id = 298885662;
     public static final String _link_id_ = "link_id";
+    public static final int    _process = 131926618;
+    public static final String _process_ = "process";
     public static final int    _re_deploy = 1952857006;
     public static final String _re_deploy_ = "re-deploy";
     public static final int    _case_xml = 1045595144;
@@ -97,8 +105,12 @@ public class foundation extends ConfNamespace {
     public static final String _no_lsa_ = "no-lsa";
     public static final int    _foun_name = 1504868887;
     public static final String _foun_name_ = "foun_name";
+    public static final int    _device_id = 1897395891;
+    public static final String _device_id_ = "device_id";
     public static final int    _c_non_service_config = 163842291;
     public static final String _c_non_service_config_ = "c-non-service-config";
+    public static final int    _IGP_service = 438334694;
+    public static final String _IGP_service_ = "IGP_service";
     public static final int    _devices = 270307409;
     public static final String _devices_ = "devices";
     public static final int    _foundation = 434985817;
@@ -111,6 +123,8 @@ public class foundation extends ConfNamespace {
     public static final String _netaddress_ = "netaddress";
     public static final int    _result_xml = 558977045;
     public static final String _result_xml_ = "result-xml";
+    public static final int    _network_type = 873063684;
+    public static final String _network_type_ = "network_type";
     public static final int    _lsa_service_list = 543064759;
     public static final String _lsa_service_list_ = "lsa-service-list";
     public static final int    _when = 60139460;
@@ -159,6 +173,8 @@ public class foundation extends ConfNamespace {
     public static final String _lock_ = "lock";
     public static final int    _older_than = 1805080387;
     public static final String _older_than_ = "older-than";
+    public static final int    _route_type = 396267623;
+    public static final String _route_type_ = "route_type";
     public static final int    _int_id = 771701527;
     public static final String _int_id_ = "int_id";
     public static final int    _message = 1674281495;
@@ -169,6 +185,8 @@ public class foundation extends ConfNamespace {
     public static final String _no_out_of_sync_check_ = "no-out-of-sync-check";
     public static final int    _use_lsa = 526283796;
     public static final String _use_lsa_ = "use-lsa";
+    public static final int    _metric_type = 534114160;
+    public static final String _metric_type_ = "metric_type";
     public static final int    _purge = 521476653;
     public static final String _purge_ = "purge";
     public static final int    _diff_set = 545581821;
@@ -181,6 +199,10 @@ public class foundation extends ConfNamespace {
     public static final String _service_list_ = "service-list";
     public static final int    _operation_mode = 53338359;
     public static final String _operation_mode_ = "operation-mode";
+    public static final int    _area = 1324291201;
+    public static final String _area_ = "area";
+    public static final int    _area_type = 1580499409;
+    public static final String _area_type_ = "area_type";
     public static final int    _log = 1285913844;
     public static final String _log_ = "log";
     public static final int    _no_of_impacted_services = 617426878;
@@ -207,6 +229,8 @@ public class foundation extends ConfNamespace {
     public static final String _minutes_ = "minutes";
     public static final int    _case_native = 386518560;
     public static final String _case_native_ = "case-native";
+    public static final int    _areas = 170432621;
+    public static final String _areas_ = "areas";
     public static final int    _property = 1802560321;
     public static final String _property_ = "property";
     public static final int    _weeks = 323453812;
@@ -221,6 +245,8 @@ public class foundation extends ConfNamespace {
     public static final String _cli_ = "cli";
     public static final int    _tag = 21925559;
     public static final String _tag_ = "tag";
+    public static final int    _route_import = 1614754443;
+    public static final String _route_import_ = "route_import";
     public static final int    _depth = 664239201;
     public static final String _depth_ = "depth";
     public static final int    _id = 1279252765;
@@ -235,6 +261,8 @@ public class foundation extends ConfNamespace {
     public static final String _link_service_ = "link_service";
     public static final int    _link_num = 1311644564;
     public static final String _link_num_ = "link_num";
+    public static final int    _metric_value = 495342595;
+    public static final String _metric_value_ = "metric_value";
     public static final int    _latest_u_info = 1742023338;
     public static final String _latest_u_info_ = "latest-u-info";
     public static final int    _seconds = 1442107370;
@@ -255,6 +283,8 @@ public class foundation extends ConfNamespace {
     public static final String _services_ = "services";
     public static final int    _case_cli = 1248658608;
     public static final String _case_cli_ = "case-cli";
+    public static final int    _OSPF = 619009612;
+    public static final String _OSPF_ = "OSPF";
     public static final int    _device = 617911018;
     public static final String _device_ = "device";
     public static final int    _choice_lsa = 1376297560;
@@ -269,8 +299,10 @@ public class foundation extends ConfNamespace {
     public static final String _local_node_ = "local-node";
     public static final int    _data = 535242711;
     public static final String _data_ = "data";
+    public static final int    _interfaces = 321503962;
+    public static final String _interfaces_ = "interfaces";
     public static final int    _deep_check_sync = 928241134;
     public static final String _deep_check_sync_ = "deep-check-sync";
     public static final String callpoint_ncs_rfs_service_hook = "ncs-rfs-service-hook";
-    public static final String servicepoint_foundation_servicepoint = "foundation-servicepoint";
+    public static final String servicepoint_link_service_servicepoint = "link_service-servicepoint";
 }
