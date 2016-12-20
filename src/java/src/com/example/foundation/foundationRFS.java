@@ -179,12 +179,13 @@ public class foundationRFS {
     	NavuLeaf process_id = service.leaf("process_id");
     	//ospf 进程ID赋值
     	ospf.putQuoted("PROCESS_ID", process_id.valueAsString());
+    	System.out.print(process_id.valueAsString());
     	//...
     	
     	//重分部部分取值
     	NavuContainer route_import = service.container("route_import");
     	NavuLeaf route_type = route_import.leaf("route_type");
-    	NavuLeaf red_process_id = route_import.leaf("process_id");
+    	NavuLeaf red_process_id = route_import.leaf("red_process_id");
     	NavuLeaf metric_type = route_import.leaf("metric_type");
     	NavuLeaf metric_value = route_import.leaf("metric_value");
     	//重分部部分赋值
@@ -211,15 +212,22 @@ public class foundationRFS {
     		NavuLeaf area_id = area_info.leaf("area_id");
     		NavuLeaf area_type = area_info.leaf("area_type");
     		NavuLeaf totally = area_info.leaf("totally");
+    		System.out.printf("%s\n%s\n",area_type.valueAsString(),totally.valueAsString());
+    		
     		//area部分赋值
     		ospf.putQuoted("AREA_ID", area_id.valueAsString());
-    		if(!area_type.equals("normal")){
-    			ospf.putQuoted("AREA_TYPE", area_type.valueAsString());
-    			if(totally.valueAsString().equals("true"))
+    		ospf.putQuoted("AREA_TYPE", area_type.valueAsString());
+    		if(!area_type.valueAsString().equals("normal")){
+    			System.out.printf("%s\n%s\n%s\n",area_id.valueAsString(),area_type.valueAsString(),totally.valueAsString());
+    			if(totally.valueAsString().equals("TRUE"))
     				ospf.putQuoted("TOTALLY", "true");
     			else
     				ospf.putQuoted("TOTALLY", "false");
     		}
+    		else{
+    			ospf.putQuoted("TOTALLY", "false");
+    		}
+    			
     		//...
 
     		//device部分
@@ -265,7 +273,6 @@ public class foundationRFS {
 					}
     				//...
     			}
-
     		}
     	}
 

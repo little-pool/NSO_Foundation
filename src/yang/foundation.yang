@@ -122,8 +122,8 @@ module foundation {
                 }
                 leaf totally{
                   type enumeration{
-                    enum true;
-                    enum false;
+                    enum TRUE;
+                    enum FALSE;
                   }
                 }
                 container devices{

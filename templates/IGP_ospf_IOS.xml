@@ -11,7 +11,6 @@ AREA_ID          区域号
 AREA_TYPE        区域类型
 TOTALLY          是否配置了完全末节
 
-//在IOSXR中的宣告
 INT_TYPE         被宣告接口类型
 INT_ID           被宣告接口号
 NET_TYPE         被宣告接口网络类型
@@ -21,56 +20,11 @@ INT_IP          宣告ip
 WILD_CARD       宣告通配符
 TAR_AREA        宣告area
 -->
-
 <config-template xmlns="http://tail-f.com/ns/config/1.0">
     <devices xmlns="http://tail-f.com/ns/ncs">
         <device>
             <name>{$DEVICE_NAME}</name>
             <config>
-                <!--IOSXR-->
-                <router xmlns="http://tail-f.com/ned/cisco-ios-xr">
-                    <ospf>
-                        <name>{$PROCESS_ID}</name>
-                        <router-id>{$ROUTER_ID}</router-id>
-                        <!--重分部部分-->
-                        <redistribute when="{$RED='TRUE'}">
-                            <ospf when="{$RED_PROTOCOL='ospf'}">
-                                <id>{$RED_PROCESS_ID}</id>
-                                <metric>{$RED_METRIC_VALUE}</metric>
-                                <metric-type>{$RED_METRIC_TYPE}</metric-type>
-                            </ospf>
-                            <bgp when="{$RED_PROTOCOL='bgp'}">
-                                <id>{$RED_PROCESS_ID}</id>
-                                <metric>{$RED_METRIC_VALUE}</metric>
-                                <metric-type>{$RED_METRIC_TYPE}</metric-type>
-                            </bgp>
-                            <static when="{$RED_PROTOCOL='static'}">
-                                <metric>{$RED_METRIC_VALUE}</metric>
-                                <metric-type>{$RED_METRIC_TYPE}</metric-type>
-                            </static>
-                            <isis when="{$RED_PROTOCOL='isis'}">
-                                <id>{$RED_PROCESS_ID}</id>
-                                <metric>{$RED_METRIC_VALUE}</metric>
-                                <metric-type>{$RED_METRIC_TYPE}</metric-type>
-                            </isis>
-                        </redistribute>
-                        <!--AREA部分-->
-                        <area>
-                            <id>{$AREA_ID}</id>
-                            <stub when="{$AREA_TYPE='stub'}">
-                                <no-summary when="{$TOTALLY='true'}"/>
-                            </stub>
-                            <nssa when="{$AREA_TYPE='nssa'}">
-                                <no-summary when="{$TOTALLY='true'}"/>
-                            </nssa>
-                            <interface>
-                                <name>{$INT_TYPE}{$INT_ID}</name>
-                                <network>{$NET_TYPE}</network>
-                            </interface>
-                        </area>
-                    </ospf>
-                </router>
-
                 <!--IOS-->
                 <router xmlns="urn:ios">
                     <ospf>
@@ -78,10 +32,10 @@ TAR_AREA        宣告area
                         <!--AREA部分-->
                         <area>
                             <id>{$AREA_ID}</id>
-                            <stub when="{$STUB='true'}">
+                            <stub when="{$AREA_TYPE='stub'}">
                                 <no-summary when="{$TOTALLY='true'}"/>
                             </stub>
-                            <nssa when="{$NSSA='true'}">
+                            <nssa when="{$AREA_TYPE='nssa'}">
                                 <no-summary when="{$TOTALLY='true'}"/>
                             </nssa>
                         </area>
