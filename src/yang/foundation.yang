@@ -14,7 +14,6 @@ module foundation {
 
   //link节点信息用于link_service
   grouping node{
-    //在添加netblock时要将两个node中device的name取出，根据name的最后数字来确定网络好的第三个segment。
     leaf device{
       type leafref{
         path "/ncs:devices/ncs:device/ncs:name";
@@ -30,9 +29,6 @@ module foundation {
       }
       leaf int_id{
         type string;
-        /*type leafref{
-          path "/ncs:devices/ncs:device[name = current()/../../device]/ncs:config/ncs:interface/ncs:'current()/../int_type/'/ncs:id";
-        }*/
       }
     }
   }
@@ -40,12 +36,10 @@ module foundation {
   augment /ncs:services {
     list foundation
     {
-
       key foun_name;
       leaf foun_name{
         type string;
       }
-
       container link_service{
         list link_part{
 
@@ -66,10 +60,9 @@ module foundation {
               type inet:ipv4-address;
               default "10.1.0.0";
             }
-            //每段链路的掩码
             leaf netmask{
               type string;
-              default "30";
+              default "16";
             }
           }
           list link{
@@ -91,19 +84,48 @@ module foundation {
       container IGP_service{
         container OSPF{
           list process{
+
+            uses ncs:service-data;
+            ncs:servicepoint "IGP_service-servicepoint";
+
             key "process_id";
             leaf process_id{type string;}
             container route_import{
-              leaf route_type{type string;}
-              leaf process_id{type uint32;}
-              leaf metric_type{type string;}
+              leaf route_type{
+                type enumeration{
+                  enum static;
+                  enum ospf;
+                  enum bgp;
+                  enum isis;
+                  enum none;
+                }
+              }
+              leaf red_process_id{type uint32;}
+              leaf metric_type{
+                type enumeration{
+                  enum type-one;
+                  enum type-two;
+                }
+              }
               leaf metric_value{type uint32;}
             }
             container areas{
               list area{
                 key "area_id";
                 leaf area_id{type uint32;}
-                leaf area_type{type string;}
+                leaf area_type{
+                  type enumeration{
+                    enum normal;
+                    enum stub;
+                    enum nssa;
+                  }
+                }
+                leaf totally{
+                  type enumeration{
+                    enum true;
+                    enum false;
+                  }
+                }
                 container devices{
                   list device{
                     key "device_id";
@@ -114,7 +136,14 @@ module foundation {
                         key "int_type int_id";
                         leaf int_type{type string;}
                         leaf int_id{type string;}
-                        leaf network_type{type string;}
+                        leaf network_type{
+                          type enumeration{
+                            enum broadcast;
+                            enum non-broadcast;
+                            enum point-to-point;
+                            enum point-to-multipoint;
+                          }
+                        }
                       }
                     }
                   }

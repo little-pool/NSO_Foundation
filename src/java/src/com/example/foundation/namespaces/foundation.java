@@ -163,6 +163,8 @@ public class foundation extends ConfNamespace {
     public static final String _result_ = "result";
     public static final int    _reconcile = 652237750;
     public static final String _reconcile_ = "reconcile";
+    public static final int    _red_process_id = 561242704;
+    public static final String _red_process_id_ = "red_process_id";
     public static final int    _outformat = 2033658489;
     public static final String _outformat_ = "outformat";
     public static final int    _failed_device = 1735357793;
@@ -273,6 +275,8 @@ public class foundation extends ConfNamespace {
     public static final String _used_by_customer_service_ = "used-by-customer-service";
     public static final int    _private = 2025604902;
     public static final String _private_ = "private";
+    public static final int    _totally = 143252840;
+    public static final String _totally_ = "totally";
     public static final int    _check_sync = 1337316030;
     public static final String _check_sync_ = "check-sync";
     public static final int    _timeout = 614210192;
@@ -304,5 +308,6 @@ public class foundation extends ConfNamespace {
     public static final int    _deep_check_sync = 928241134;
     public static final String _deep_check_sync_ = "deep-check-sync";
     public static final String callpoint_ncs_rfs_service_hook = "ncs-rfs-service-hook";
+    public static final String servicepoint_IGP_service_servicepoint = "IGP_service-servicepoint";
     public static final String servicepoint_link_service_servicepoint = "link_service-servicepoint";
 }
