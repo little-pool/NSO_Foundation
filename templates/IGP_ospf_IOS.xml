@@ -39,7 +39,7 @@ TAR_AREA        宣告area
                                 <no-summary when="{$TOTALLY='true'}"/>
                             </nssa>
                         </area>
-                        <router-id>{$ROUTE_ID}</router-id>
+                        <router-id>{$ROUTER_ID}</router-id>
                         <!--重分部部分-->
                         <redistribute when="{$RED='TRUE'}">
                             <ospf when="{$RED_PROTOCOL='ospf'}">

@@ -4,6 +4,7 @@ import java.net.InterfaceAddress;
 import org.apache.log4j.chainsaw.Main;
 import com.tailf.navu.NavuContainer;
 import com.tailf.navu.NavuException;
+import com.tailf.navu.NavuLeaf;
 import com.tailf.navu.NavuList;
 import com.tailf.navu.NavuNode;
 
@@ -37,9 +38,10 @@ public class device_operation {
 		NavuContainer interface_ = config.container("ios:interface");
 		NavuList int_type = interface_.list(intType);
 		NavuContainer int_id = int_type.elem(intID);
-		NavuContainer ip = int_id.container("address");
-		NavuContainer primary = ip.container("primary");
-		return primary.leaf("address").valueAsString();
-		
+		NavuContainer ip = int_id.container("ip");
+		NavuContainer address =	ip.container("address");
+		NavuContainer primary = address.container("primary");
+		String tar_address =  primary.leaf("address").valueAsString();
+		return tar_address;
 	}
 }

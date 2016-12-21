@@ -170,7 +170,8 @@ public class foundationRFS {
             NavuNode ncsRoot,
             Properties opaque)throws ConfException{
     	
-    	Template myTemplate = new Template(context, "IGP_ospf");
+    	Template myTemplate_IOS = new Template(context, "IGP_ospf_IOS");
+    	Template myTemplate_XR = new Template(context, "IGP_ospf_XR");
     	TemplateVariables ospf = new TemplateVariables();
     	/**
     	 * 取值&赋值部分
@@ -187,6 +188,10 @@ public class foundationRFS {
     	NavuLeaf route_type = route_import.leaf("route_type");
     	NavuLeaf red_process_id = route_import.leaf("red_process_id");
     	NavuLeaf metric_type = route_import.leaf("metric_type");
+    	String mt_type = "2";
+    	if(metric_type.valueAsString().equals("type-one")){
+    		mt_type = "1";
+    	}
     	NavuLeaf metric_value = route_import.leaf("metric_value");
     	//重分部部分赋值
     	if(!route_type.valueAsString().equals("none")){
@@ -194,13 +199,13 @@ public class foundationRFS {
     		if(route_type.valueAsString().equals("static")){
     			ospf.putQuoted("RED_PROTOCOL", route_type.valueAsString());
     			ospf.putQuoted("RED_METRIC_VALUE", metric_value.valueAsString());
-    			ospf.putQuoted("RED_METRIC_TYPE", metric_type.valueAsString());
+    			ospf.putQuoted("RED_METRIC_TYPE", mt_type);
     		}
     		else {
 				ospf.putQuoted("RED_PROTOCOL", route_type.valueAsString());
 				ospf.putQuoted("RED_PROCESS_ID", red_process_id.valueAsString());
 				ospf.putQuoted("RED_METRIC_VALUE", metric_value.valueAsString());
-				ospf.putQuoted("RED_METRIC_TYPE", metric_type.valueAsString());
+				ospf.putQuoted("RED_METRIC_TYPE", mt_type);
 			}	
     	}
     	//...
@@ -256,7 +261,7 @@ public class foundationRFS {
     					//接口网络类型部分赋值
     					ospf.putQuoted("NET_TYPE", network_type.valueAsString());
     					
-    					myTemplate.apply(service, ospf);
+    					myTemplate_XR.apply(service, ospf);
     					
     				}
     				else if (device_tmp.get_deviceNed(device_id.valueAsString()).equals("ios-id:cisco-ios")) {
@@ -269,7 +274,7 @@ public class foundationRFS {
     					ospf.putQuoted("INT_ID", int_id.valueAsString());
     					ospf.putQuoted("NET_TYPE", network_type.valueAsString());
     					
-    					myTemplate.apply(service, ospf);
+    					myTemplate_IOS.apply(service, ospf);
 					}
     				//...
     			}
