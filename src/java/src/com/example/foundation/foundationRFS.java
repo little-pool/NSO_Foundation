@@ -62,7 +62,7 @@ public class foundationRFS {
     	//外层map，用于存放所有的link对象。
     	HashMap<Integer, link> links= new HashMap<>();
     	//外层map，用于存放给所有link对象分配的netblock地址的十进制数据的。
-    	HashMap<Integer, Long>netBlock_all = new HashMap<>();
+    	HashMap<Integer, Long> netBlock_all = new HashMap<>();
     	//单个part全局地址资源取值
 		NavuLeaf netaddress = netblock.leaf("netaddress");
 		NavuLeaf netmask = netblock.leaf("netmask");
@@ -122,7 +122,7 @@ public class foundationRFS {
     		device_operation device_tmp = new device_operation(ncsRoot.container("devices"));
 
     		//source device deploy
-    		TemplateVariables source_Vars = new TemplateVariables();      		
+    		TemplateVariables source_Vars = new TemplateVariables();
     		String s_device_name = links.get(j).getS_device();
     		String s_interface_type = links.get(j).getS_interface_type();
     		String s_interface_id = links.get(j).getS_interface_id();
@@ -169,7 +169,7 @@ public class foundationRFS {
             NavuNode service,
             NavuNode ncsRoot,
             Properties opaque)throws ConfException{
-    	
+
     	Template myTemplate_IOS = new Template(context, "IGP_ospf_IOS");
     	Template myTemplate_XR = new Template(context, "IGP_ospf_XR");
     	TemplateVariables ospf = new TemplateVariables();
@@ -182,7 +182,7 @@ public class foundationRFS {
     	ospf.putQuoted("PROCESS_ID", process_id.valueAsString());
     	System.out.print(process_id.valueAsString());
     	//...
-    	
+
     	//重分部部分取值
     	NavuContainer route_import = service.container("route_import");
     	NavuLeaf route_type = route_import.leaf("route_type");
@@ -206,7 +206,7 @@ public class foundationRFS {
 				ospf.putQuoted("RED_PROCESS_ID", red_process_id.valueAsString());
 				ospf.putQuoted("RED_METRIC_VALUE", metric_value.valueAsString());
 				ospf.putQuoted("RED_METRIC_TYPE", mt_type);
-			}	
+			}
     	}
     	//...
 
@@ -218,7 +218,7 @@ public class foundationRFS {
     		NavuLeaf area_type = area_info.leaf("area_type");
     		NavuLeaf totally = area_info.leaf("totally");
     		System.out.printf("%s\n%s\n",area_type.valueAsString(),totally.valueAsString());
-    		
+
     		//area部分赋值
     		ospf.putQuoted("AREA_ID", area_id.valueAsString());
     		ospf.putQuoted("AREA_TYPE", area_type.valueAsString());
@@ -232,7 +232,7 @@ public class foundationRFS {
     		else{
     			ospf.putQuoted("TOTALLY", "false");
     		}
-    			
+
     		//...
 
     		//device部分
@@ -244,7 +244,7 @@ public class foundationRFS {
     			ospf.putQuoted("DEVICE_NAME", device_id.valueAsString());
     			ospf.putQuoted("ROUTER_ID", router_id.valueAsString());
     			//...
-    			
+
     			//interface部分
     			NavuContainer interfaces = device_info.container("interfaces");
     			NavuList interface_ = interfaces.list("interface");
@@ -253,16 +253,16 @@ public class foundationRFS {
     				NavuLeaf int_id = interface_info.leaf("int_id");
     				NavuLeaf network_type = interface_info.leaf("network_type");
     				//在宣告部分IOS与XR有所不同
-    				device_operation device_tmp = new device_operation(ncsRoot.container("devices"));   				
+    				device_operation device_tmp = new device_operation(ncsRoot.container("devices"));
     				if(device_tmp.get_deviceNed(device_id.valueAsString()).equals("cisco-ios-xr-id:cisco-ios-xr")){
     					//接口宣告部分赋值
     					ospf.putQuoted("INT_TYPE", int_type.valueAsString());
     					ospf.putQuoted("INT_ID", int_id.valueAsString());
     					//接口网络类型部分赋值
     					ospf.putQuoted("NET_TYPE", network_type.valueAsString());
-    					
+
     					myTemplate_XR.apply(service, ospf);
-    					
+
     				}
     				else if (device_tmp.get_deviceNed(device_id.valueAsString()).equals("ios-id:cisco-ios")) {
     					//接口宣告部分赋值
@@ -273,18 +273,13 @@ public class foundationRFS {
     					ospf.putQuoted("INT_TYPE", int_type.valueAsString());
     					ospf.putQuoted("INT_ID", int_id.valueAsString());
     					ospf.putQuoted("NET_TYPE", network_type.valueAsString());
-    					
+
     					myTemplate_IOS.apply(service, ospf);
 					}
     				//...
     			}
     		}
     	}
-
-
-
     	return opaque;
     }
-
-
 }
