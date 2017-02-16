@@ -22,7 +22,18 @@ NET_TYPE         被宣告接口网络类型
         <device>
             <name>{$DEVICE_NAME}</name>
             <config>
-                <!--IOSXR-->
+                <!--环回口部分-->
+                <interface xmlns="http://tail-f.com/ned/cisco-ios-xr">
+                    <Loopback>
+                        <id>0</id>
+                        <ipv4>
+                            <address>
+                                <ip>{$ROUTER_ID}</ip>
+                                <mask>/32</mask>
+                            </address>
+                        </ipv4>
+                    </Loopback>
+                </interface>
                 <router xmlns="http://tail-f.com/ned/cisco-ios-xr">
                     <ospf>
                         <name>{$PROCESS_ID}</name>

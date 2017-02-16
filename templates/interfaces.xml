@@ -13,6 +13,7 @@
                                 <mask>/{$NETMASK}</mask>
                             </address>
                         </ipv4>
+                        <shutdown tags="delete"></shutdown>
                     </GigabitEthernet>
                 </interface>
                 <interface xmlns="http://tail-f.com/ned/cisco-ios-xr" when="{$INT_TYPE='TenGigE'}">
@@ -24,6 +25,7 @@
                                 <mask>/{$NETMASK}</mask>
                             </address>
                         </ipv4>
+                        <shutdown tags="delete"></shutdown>
                     </TenGigE>
                 </interface>
 
