@@ -25,6 +25,7 @@ module foundation {
           enum FastEthernet;
           enum GigabitEthernet;
           enum TenGigE;
+          enum Ethernet;
         }
       }
       leaf int_id{
@@ -152,11 +153,7 @@ module foundation {
             }
           }
         }
-
-
       }
-
-
     }
   }
 }

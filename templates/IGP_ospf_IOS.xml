@@ -44,6 +44,7 @@ TAR_AREA        宣告area
                     <ospf>
                         <id>{$PROCESS_ID}</id>
                         <!--AREA部分-->
+                        <!--
                         <area>
                             <id>{$AREA_ID}</id>
                             <stub when="{$AREA_TYPE='stub'}">
@@ -53,6 +54,7 @@ TAR_AREA        宣告area
                                 <no-summary when="{$TOTALLY='true'}"/>
                             </nssa>
                         </area>
+                        -->
                         <router-id>{$ROUTER_ID}</router-id>
                         <!--重分部部分-->
                         <redistribute when="{$RED='TRUE'}">
@@ -87,6 +89,14 @@ TAR_AREA        宣告area
                 </router>
                 <!--接口网络类型部分-->
                 <interface xmlns="urn:ios">
+                	<Ethernet when="{$INT_TYPE='Ethernet'}">
+                        <name>{$INT_ID}</name>
+                        <ip>
+                            <ospf>
+                                <network>{$NET_TYPE}</network>
+                            </ospf>
+                        </ip>
+                    </Ethernet>
                     <FastEthernet when="{$INT_TYPE='FastEthernet'}">
                         <name>{$INT_ID}</name>
                         <ip>

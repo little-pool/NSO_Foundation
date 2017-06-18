@@ -120,7 +120,7 @@ public class foundationRFS {
     		String link_netmask = links.get(j).getNetmask();
     		//创建device_operator对象来判断设备的nedType
     		device_operation device_tmp = new device_operation(ncsRoot.container("devices"));
-
+    		
     		//source device deploy
     		TemplateVariables source_Vars = new TemplateVariables();
     		String s_device_name = links.get(j).getS_device();

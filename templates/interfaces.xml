@@ -30,6 +30,20 @@
                 </interface>
 
                 <!--IOS-->
+                <interface xmlns="urn:ios" when="{$INT_TYPE='Ethernet'}">
+                    <Ethernet>
+                        <name>{$INTER_ID}</name>
+                        <ip>
+                            <address>
+                                <primary>
+                                    <address>{$IPV4_ADDRESS}</address>
+                                    <mask>{$NETMASK}</mask>
+                                </primary>
+                            </address>
+                        </ip>
+                        <shutdown tags="delete"></shutdown>
+                    </Ethernet>
+                </interface>
                 <interface xmlns="urn:ios" when="{$INT_TYPE='FastEthernet'}">
                     <FastEthernet>
                         <name>{$INTER_ID}</name>
@@ -41,6 +55,7 @@
                                 </primary>
                             </address>
                         </ip>
+                        <shutdown tags="delete"></shutdown>
                     </FastEthernet>
                 </interface>
                 <interface xmlns="urn:ios" when="{$INT_TYPE='GigabitEthernet'}">
@@ -54,6 +69,7 @@
                                 </primary>
                             </address>
                         </ip>
+                        <shutdown tags="delete"></shutdown>
                     </GigabitEthernet>
                 </interface>
                 <interface xmlns="urn:ios" when="{$INT_TYPE='TenGigE'}">
@@ -67,6 +83,7 @@
                                 </primary>
                             </address>
                         </ip>
+                        <shutdown tags="delete"></shutdown>
                     </TenGigabitEthernet>
                 </interface>
             </config>
